@@ -1,17 +1,3 @@
-<?php
-require_once('./dados.php');
-$id = $_REQUEST['id'];
-
-// $filtrado = array_filter($livros, function ($l) use ($id) {
-//     // var_dump($l['id']);
-//     return $l['id'] == $id;
-// });
-
-$filtrado = array_filter($livros, fn($l) => $l['id'] == $id);
-
-$livro = array_pop($filtrado);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
