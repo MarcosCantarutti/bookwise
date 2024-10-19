@@ -10,32 +10,17 @@ class DB
         $this->db =  new PDO('sqlite:database.sqlite');
     }
 
-    // @return array[Livro];
-    public function livros()
+    public function query($query, $class = NULL, $params = [])
     {
-        $sql = "SELECT * FROM LIVROS";
-        $query = $this->db->query($sql);
-        $items = $query->fetchAll();
 
-        // foreach ($items as $item) {
-        //     $livro = Livro::make($item);
-        //     $retorno[] = $livro;
-        // }
+        $prepare = $this->db->prepare($query);
 
-        return array_map(fn($item) =>  Livro::make($item), $items);
-    }
+        if ($class) {
+            $prepare->setFetchMode(PDO::FETCH_CLASS, $class); // 
+        }
 
-    public function livro($id)
-    {
-        $sql = "SELECT * FROM LIVROS where id = $id";
-        $query = $this->db->query($sql);
+        $prepare->execute($params);
 
-        $items = $query->fetchAll();
-
-        // foreach ($items as $item) {
-        //     $livro = Livro::make($item);
-        // }
-
-        return array_map(fn($item) =>  Livro::make($item), $items)[0];
+        return $prepare;
     }
 }

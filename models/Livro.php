@@ -6,6 +6,8 @@ class Livro
     public $titulo;
     public $autor;
     public $descricao;
+    public $ano_de_lancamento;
+    public $usuario_id;
 
     //static, chamada sem instanciar um new Livro
     public static function make($item)
@@ -15,7 +17,8 @@ class Livro
         $livro->titulo = $item['titulo'];
         $livro->autor = $item['autor'];
         $livro->descricao = $item['descricao'];
-
+        $livro->ano_de_lancamento = $item['ano_de_lancamento'];
+        $livro->usuario_id = $item['usuario_id'];
         return $livro;
     }
 }
