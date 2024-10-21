@@ -78,6 +78,26 @@ class Validacao
         }
     }
 
+    private function unique($tabela, $campo, $valor)
+    {
+        if (strlen($valor) == 0) {
+            return;
+        }
+
+        $db = new DB(config('database'));
+
+        $resultado = $db->query(
+            query: "select * from $tabela where $campo = :valor",
+            params: ['valor' => $valor]
+        )->fetch();
+
+        // dd($resultado);
+
+        if ($resultado) {
+            $this->validacoes[] = "O campo $campo já esta sendo usado.";
+        }
+    }
+
 
     public function naoPassou($formLocation = '')
     {

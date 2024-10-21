@@ -3,9 +3,9 @@
 require './models/Livro.php';
 require './models/Usuario.php';
 session_start();
-require './functions.php';
-require './Validacao.php';
 require './Flash.php';
+require './functions.php';
 $config = require_once('./config.php');
 require './database.php';
+require './Validacao.php';
 require './routes.php';
