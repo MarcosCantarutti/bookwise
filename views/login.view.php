@@ -2,6 +2,17 @@
     <div class="border border-stone-700 rounded">
         <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">Login</h1>
         <form class=" p-4 space-y-4" method="POST">
+            <?php if ($validacoes = flash()->get('validacoes_login')) : ?>
+                <div class="border-red-800 border-2 rounded-md bg-red-900 text-red-400 px-4 py-1">
+                    <ul>
+
+                        <li>Deu ruim!</li>
+                        <?php foreach ($validacoes as $validacao): ?>
+                            <li><?= $validacao ?></li>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
             <div class="flex flex-col">
                 <label class="text-stone-400 mb-1" for="email">Email</label>
                 <input type="text" class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1" placeholder="Email" name="email" required type="email">
@@ -21,18 +32,13 @@
     <div class="border border-stone-700 rounded">
         <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">Registro</h1>
         <form class=" p-4 space-y-4" method="POST" action="/registrar">
-            <?php if (strlen($mensagem) > 0): ?>
-                <div class="border-green-800 border-2 rounded-md bg-green-900 text-green-400 px-4 py-1">
-                    <?= $mensagem; ?>
-                </div>
-            <?php endif; ?>
 
-            <?php if (isset($_SESSION['validacoes']) && count($_SESSION['validacoes']) > 0) : ?>
+            <?php if ($validacoes = flash()->get('validacoes_registrar')) : ?>
                 <div class="border-red-800 border-2 rounded-md bg-red-900 text-red-400 px-4 py-1">
                     <ul>
 
                         <li>Deu ruim!</li>
-                        <?php foreach ($_SESSION['validacoes'] as $validacao): ?>
+                        <?php foreach ($validacoes as $validacao): ?>
                             <li><?= $validacao ?></li>
                         <?php endforeach ?>
                     </ul>

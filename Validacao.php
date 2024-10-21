@@ -79,9 +79,16 @@ class Validacao
     }
 
 
-    public function naoPassou()
+    public function naoPassou($formLocation = '')
     {
-        $_SESSION['validacoes'] = $this->validacoes;
+
+        $validacao = 'validacoes';
+
+        if ($formLocation) {
+            $validacao .= "_" . $formLocation;
+        }
+        flash()->push($validacao, $this->validacoes);
+        // $_SESSION['validacoes'] = $this->validacoes;
         return is_array($this->validacoes) && count($this->validacoes) > 0;
     }
 }

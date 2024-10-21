@@ -1,8 +1,5 @@
 <?php
 
-$mensagem = $_REQUEST['mensagem'] ?? '';
-
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email    = $_POST['email'];
     $password = $_POST['password'];
@@ -12,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         'senha' => ['required']
     ], $_POST);
 
-    if ($validacao->naoPassou()) {
-        header('location: /logout');
+    if ($validacao->naoPassou('login')) {
+        header('location: /login');
         exit();
     }
 
@@ -28,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($usuario) {
         $_SESSION['auth'] = $usuario;
 
-        $_SESSION['Mensagem'] = "Seja bem vindo " . $usuario->nome . "!";
+        flash()->push('mensagem', "Seja bem vindo " . $usuario->nome . "!");
+        // $_SESSION['Mensagem']= "Seja bem vindo " . $usuario->nome . "!";
         header('location: /');
 
         exit();
@@ -38,4 +36,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-view('login', compact('mensagem'));
+view('login');
