@@ -27,7 +27,7 @@
                 </div>
             <?php endif; ?>
 
-            <?php if (isset($_SESSION['validacoes']) && sizeof($_SESSION['validacoes'])) : ?>
+            <?php if (isset($_SESSION['validacoes']) && count($_SESSION['validacoes']) > 0) : ?>
                 <div class="border-red-800 border-2 rounded-md bg-red-900 text-red-400 px-4 py-1">
                     <ul>
 

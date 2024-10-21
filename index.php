@@ -1,8 +1,9 @@
 <?php
 
+require './models/Livro.php';
+require './models/Usuario.php';
 session_start();
-require_once('./functions.php');
-require_once('./models/Livro.php');
+require './functions.php';
 $config = require_once('./config.php');
-require_once('./database.php');
-require_once('./routes.php');
+require './database.php';
+require './routes.php';

@@ -78,9 +78,10 @@ class Validacao
         }
     }
 
+
     public function naoPassou()
     {
         $_SESSION['validacoes'] = $this->validacoes;
-        return count($this->validacoes) > 0;
+        return is_array($this->validacoes) && count($this->validacoes) > 0;
     }
 }
