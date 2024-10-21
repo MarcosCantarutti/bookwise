@@ -8,11 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $password = $_POST['password'];
 
     $validacao = Validacao::validar([
-        'email' => ['required','email'],
-        'senha' => ['required'];
-    ]);
+        'email' => ['required', 'email'],
+        'senha' => ['required']
+    ], $_POST);
 
-    if($validacao->naoPassou()){
+    if ($validacao->naoPassou()) {
         header('location: /logout');
         exit();
     }
