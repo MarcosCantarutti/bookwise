@@ -26,6 +26,18 @@
                     <?= $mensagem; ?>
                 </div>
             <?php endif; ?>
+
+            <?php if (isset($_SESSION['validacoes']) && sizeof($_SESSION['validacoes'])) : ?>
+                <div class="border-red-800 border-2 rounded-md bg-red-900 text-red-400 px-4 py-1">
+                    <ul>
+
+                        <li>Deu ruim!</li>
+                        <?php foreach ($_SESSION['validacoes'] as $validacao): ?>
+                            <li><?= $validacao ?></li>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
             <div class="flex flex-col">
                 <label class="text-stone-400 mb-1" for="name">Nome</label>
                 <input type="text" class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1" placeholder="Nome" name="name" required type="name">
