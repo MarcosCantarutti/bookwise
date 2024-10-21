@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $validacao = Validacao::validar([
         'email' => ['required', 'email'],
-        'senha' => ['required']
+        'password' => ['required']
     ], $_POST);
 
     if ($validacao->naoPassou('login')) {
@@ -15,14 +15,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     $usuario  = $database->query(
-        query: "SELECT * FROM USUARIOS WHERE email = :email and password = :password",
+        query: "SELECT * FROM USUARIOS WHERE email = :email",
         class: Usuario::class,
-        params: ['email' => $email, 'password' => $password]
+        params: ['email' => $email]
     )->fetch();
 
     // dd($usuario);
 
     if ($usuario) {
+
+        if (!password_verify($password, $usuario->password)) {
+            flash()->push('validacoes_login', ['Usuario ou senha estão incorretos!']);
+            header('location: /login');
+            exit();
+        }
+
+
         $_SESSION['auth'] = $usuario;
 
         flash()->push('mensagem', "Seja bem vindo " . $usuario->nome . "!");
