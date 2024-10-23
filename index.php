@@ -1,5 +1,5 @@
 <?php
-
+require './models/Avaliacao.php';
 require './models/Livro.php';
 require './models/Usuario.php';
 session_start();
