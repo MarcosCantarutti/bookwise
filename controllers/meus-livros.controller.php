@@ -4,10 +4,6 @@ if (!auth()) {
     header('location: /');
 }
 
-$livros  = $database->query(
-    query: "SELECT * FROM livros WHERE usuario_id = :id",
-    class: Livro::class,
-    params: ['id' => auth()->id]
-)->fetchAll();
+$livros  = Livro::myBooks(auth()->id);
 
 view('meus-livros', compact('livros'));
