@@ -40,7 +40,7 @@
             </div>
         <?php endif ?>
 
-        <?php require_once("views/{$view}.view.php"); ?>
+        <?php require_once("../views/{$view}.view.php"); ?>
 
 
     </main>
