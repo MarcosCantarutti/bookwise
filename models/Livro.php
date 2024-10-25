@@ -8,6 +8,7 @@ class Livro
     public $descricao;
     public $ano_de_lancamento;
     public $usuario_id;
+    public $imagem;
     public $nota_avaliacoes;
     public $count_avaliacoes;
 
@@ -18,6 +19,7 @@ class Livro
         $livro->id = $item['id'];
         $livro->titulo = $item['titulo'];
         $livro->autor = $item['autor'];
+        $livro->imagem = $item['imagem'];
         $livro->descricao = $item['descricao'];
         $livro->ano_de_lancamento = $item['ano_de_lancamento'];
         $livro->usuario_id = $item['usuario_id'];
@@ -40,7 +42,8 @@ class Livro
                             l.titulo, 
                             l.autor, 
                             l.descricao, 
-                            l.ano_de_lancamento, 
+                            l.ano_de_lancamento,
+                            l.imagem, 
                             ifnull(round(sum(a.nota)/5.0), 0) as nota_avaliacoes, 
                             ifnull(count(a.id),0) as count_avaliacoes 
                         from 
